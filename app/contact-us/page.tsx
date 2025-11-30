@@ -9,7 +9,7 @@ import {
 } from "@/data/contactFormData";
 import ArrowRight from "@/public/icons/ArrowRight";
 import MailIcon from "@/public/icons/MailIcon";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 const ContactUs = () => {
   const [selectedCurrency, setSelectedCurrency] = useState<"naira" | "dollar">(
@@ -31,11 +31,10 @@ const ContactUs = () => {
       ...formValue,
       [name]: value,
     });
-    console.log(value);
   };
   const [formValue, setFormValue] = useState({
     name: "",
-    companyName: "",
+    // companyName: "",
     gotToKnowEnovate: "",
     service: "",
     budget: "",
@@ -43,8 +42,15 @@ const ContactUs = () => {
     moreDetails: "",
   });
 
-  const handleShootEmail = () => {
-    window.location.href = "mailto:hq@enovate.work";
+  const handleShootEmail = async (e: FormEvent) => {
+    e.preventDefault();
+    const res = await fetch("/api/web3forms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formValue),
+    });
+    const result = await res.json();
+    console.log(result);
   };
 
   return (
@@ -58,7 +64,7 @@ const ContactUs = () => {
         </h2>
         <form
           className=" font-body-inter mt-[5rem] gap-y-2 flex flex-col max-sm:mt-[3rem]"
-          action=""
+          onSubmit={handleShootEmail}
         >
           <div className=" flex gap-x-4 py-4 max-sm:flex-col max-sm:gap-y-4  ">
             <div className=" flex items-baseline gap-x-4 max-sm:flex-col  ">
@@ -211,7 +217,6 @@ const ContactUs = () => {
             text="Shoot us an email"
             variant="outline"
             Icon={<MailIcon color="#5a5a5a" />}
-            onClickFn={handleShootEmail}
           />
         </div>
       </section>
