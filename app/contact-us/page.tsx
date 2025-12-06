@@ -10,6 +10,7 @@ import {
 import ArrowRight from "@/public/icons/ArrowRight";
 import MailIcon from "@/public/icons/MailIcon";
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 const ContactUs = () => {
   const [selectedCurrency, setSelectedCurrency] = useState<"naira" | "dollar">(
@@ -50,7 +51,20 @@ const ContactUs = () => {
       body: JSON.stringify(formValue),
     });
     const result = await res.json();
-    console.log(result);
+    if (result.success) {
+      toast.success("Your message was successfully sent!", {
+        duration: 9000,
+        position: "top-right",
+      });
+      setFormValue({
+        name: "",
+        gotToKnowEnovate: "",
+        service: "",
+        budget: "",
+        email: "",
+        moreDetails: "",
+      });
+    }
   };
 
   return (

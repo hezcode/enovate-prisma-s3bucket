@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import Providers from "./providers";
+import { Toaster } from "react-hot-toast";
 
 const merriweatherSans = Merriweather_Sans({
   variable: "--font-merriweather-sans",
@@ -42,6 +43,15 @@ export default function RootLayout({
       >
         <Providers>
           <Analytics />
+          <Toaster
+            toastOptions={{
+              success: {
+                style: {
+                  border: "2px solid #556B2F",
+                },
+              },
+            }}
+          />
           {/* <section className=""> */}
           <Header />
           {/* </section> */}

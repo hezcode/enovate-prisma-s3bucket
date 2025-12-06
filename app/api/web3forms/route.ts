@@ -28,9 +28,22 @@ export async function POST(req: any) {
         <p> ${moreDetails} </p>
       `,
     };
-    await sgMail.send(msg).then(() => {
-      console.log("Email sent");
-    });
+    const autoResponse = {
+      to: email,
+      from: senderEmail,
+      subject: "We have Received Your Message — Thanks for Reaching Out 🚀",
+      html: `
+        <p>Good day ${name},</p>
+        <p> Thank you for contacting Enovate — your message has been successfully received!</p>
+        <p>One of our team members is already reviewing your request, and we will get back to you shortly with the next steps.
+        We typically respond within a few hours, but no later than 24 hours on business days.</p>
+        <br/>
+        <p>Looking forward to connecting with you,</p>
+        <p><b>The Enovate Team</b></p>
+      `,
+    };
+
+    await Promise.all([sgMail.send(msg), sgMail.send(autoResponse)]);
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error(error);
