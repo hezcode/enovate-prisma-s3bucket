@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Enovate Studio",
   description:
-    "Global digital agency specializing in website design, web app development, and mobile app solutions for startups, entrepreneurs, and growing brands.",
+    "Global digital agency specializing in website design, web application development, and mobile application solutions for small businesses, startups, entrepreneurs, and growing brands.",
 };
 
 export default function RootLayout({
@@ -52,9 +52,8 @@ export default function RootLayout({
               },
             }}
           />
-          {/* <section className=""> */}
+
           <Header />
-          {/* </section> */}
           {children}
           <section className="mt-auto">
             <Footer />
