@@ -42,6 +42,8 @@ const Header = () => {
                   alt="enovate_logo"
                   objectFit="contain"
                   fill
+                  fetchPriority="high"
+                  loading="lazy"
                 />
               </div>
               <p className=" font-sans text-[10px] text-text-dark-gray font-medium ">

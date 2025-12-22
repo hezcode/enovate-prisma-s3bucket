@@ -11,16 +11,16 @@ const ProjectList = () => {
     queryKey: ["projects"],
     queryFn: fetchProjects,
   });
-  if (isLoading)
-    return (
-      <div className=" flex items-center flex-col my-8 gap-y-4 ">
-        <ClipLoader color="#7683ee" size={70} />
-        <h2 className=" font-body-inter text-[1.2rem] text-center font-medium italic ">
-          {" "}
-          Fetching all projects...{" "}
-        </h2>
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div className=" flex items-center flex-col my-8 gap-y-4 ">
+  //       <ClipLoader color="#7683ee" size={70} />
+  //       <h2 className=" font-body-inter text-[1.2rem] text-center font-medium italic ">
+  //         {" "}
+  //         Fetching all projects...{" "}
+  //       </h2>
+  //     </div>
+  //   );
   if (error)
     return (
       <div className=" flex items-center flex-col my-8 ">

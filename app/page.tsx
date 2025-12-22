@@ -1,8 +1,4 @@
 import Image from "next/image";
-import prisma from "@/lib/prisma";
-import CustomButton from "@/components/CustomButton";
-import CheckSubscription from "@/public/icons/CheckSubscription";
-import Calendar from "@/public/icons/Calendar";
 import { expertiseList } from "@/data/expertiseList";
 import ExpertiseCard from "@/components/ExpertiseCard";
 
@@ -12,23 +8,25 @@ import discuss from "../public/icons/discuss.svg";
 import lineFrame from "../public/icons/line-frame.svg";
 import verticalLineFrame from "../public/icons/step-gradient.svg";
 
-import HandShake from "@/public/icons/HandShake";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { getQueryClient } from "../lib/tanstackQuery/get-query-client";
-import { fetchProjects } from "@/lib/tanstackQuery/queries/projectsQuery";
+// import HandShake from "@/public/icons/HandShake";
+// import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+// import { getQueryClient } from "../lib/tanstackQuery/get-query-client";
+// import { fetchProjects } from "@/lib/tanstackQuery/queries/projectsQuery";
 import Faq from "@/components/pageSections/Faq";
 import ProjectList from "@/components/pageSections/ProjectList";
-import { redirect, RedirectType } from "next/navigation";
+// import { redirect, RedirectType } from "next/navigation";
 import HeroCta from "@/components/pageSections/HeroCta";
 import PrefooterCta from "@/components/pageSections/PrefooterCta";
+import { Suspense } from "react";
+import { ClipLoader } from "react-spinners";
 
 export default async function Home() {
-  const queryClient = getQueryClient();
+  // const queryClient = getQueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["projects"],
-    queryFn: fetchProjects,
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["projects"],
+  //   queryFn: fetchProjects,
+  // });
 
   return (
     <main className="  ">
@@ -39,6 +37,8 @@ export default async function Home() {
           alt="hero_bg"
           fill
           className=" object-contain "
+          fetchPriority="high"
+          loading="lazy"
         />
         <div className=" absolute 2xl:translate-y[-70%] translate-y-[-50%] top-[50%]">
           <h1
@@ -133,9 +133,12 @@ export default async function Home() {
           deliver industry leading solutions.
         </p>
         {/* RENDER PROJECT LISTS THAT ARE ALREADY PREFETCHED */}
-        <HydrationBoundary state={dehydrate(queryClient)}>
+        {/* <HydrationBoundary state={dehydrate(queryClient)}>
           <ProjectList />
-        </HydrationBoundary>
+        </HydrationBoundary> */}
+        <Suspense fallback={<Loading />}>
+          <ProjectList />
+        </Suspense>
       </section>
       {/* OUR PROCESS OF WORKING SECTION */}
       <section className="max-w-[1200px] mx-auto my-24  px-2 ">
@@ -219,3 +222,15 @@ export default async function Home() {
     </main>
   );
 }
+
+const Loading = () => {
+  return (
+    <div className=" flex items-center flex-col my-8 gap-y-4 ">
+      <ClipLoader color="#7683ee" size={70} />
+      <h2 className=" font-body-inter text-[1.2rem] text-center font-medium italic ">
+        {" "}
+        Fetching all projects...{" "}
+      </h2>
+    </div>
+  );
+};

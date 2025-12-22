@@ -8,8 +8,6 @@ const senderEmail = process.env.SENDER_EMAIL;
 export async function POST(req: any) {
   const { name, gotToKnowEnovate, service, budget, email, moreDetails } =
     await req.json();
-  //   const body = await req.json();
-  //   console.log(body);
   try {
     if (!sendgridApiKey || !ownerEmail || !senderEmail) {
       throw new Error(
@@ -46,7 +44,6 @@ export async function POST(req: any) {
     await Promise.all([sgMail.send(msg), sgMail.send(autoResponse)]);
     return NextResponse.json({ success: true });
   } catch (error: any) {
-    console.error(error);
     return NextResponse.json({ status: false, message: error });
   }
 }
