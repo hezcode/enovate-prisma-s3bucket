@@ -40,7 +40,7 @@ const AboutUs = () => {
   return (
     <main className=" ">
       <section className=" bg-[url('/images/pathhero_path.png')] bg-center bg-contain bg-no-repeat  mx-auto relative px-2 max-sm:bg-cover ">
-        <div className="pt-41 max-w-[1200px] mx-auto max-sm:pt-12 ">
+        <div className="pt-41 max-md:pt-20 max-w-[1200px] mx-auto max-sm:pt-12 ">
           <h2 className=" font-sans font-semibold text-7xl text-center text-title-gray z-20 max-sm:text-6xl  ">
             About us
           </h2>
@@ -90,7 +90,7 @@ const AboutUs = () => {
         <h2 className=" font-sans text-title-gray text-5xl font-[600] text-center max-sm:text-4xl ">
           How we work
         </h2>
-        <div className=" grid grid-cols-[1fr_1fr] max-sm:flex max-sm:flex-col max-sm:items-center ">
+        <div className=" grid grid-cols-[1fr_1fr] max-md:flex max-md:flex-col max-md:items-center ">
           {howWeWork.map((data) => {
             return (
               <div
@@ -105,7 +105,7 @@ const AboutUs = () => {
                   {data.title}
                 </h3>
                 <p
-                  className={` text-center text-subtitle-gray font-body-inter font-[400] text-[1rem]  `}
+                  className={` text-center text-subtitle-gray font-body-inter font-[400] text-[1rem] max-sm:w-full max-md:w-[70%]  `}
                 >
                   {data.detail}
                 </p>
@@ -114,19 +114,21 @@ const AboutUs = () => {
           })}
         </div>
       </section>
-      <section className="max-w-[1200px] mx-auto rounded-2xl my-28 bg-enovate-dark-green py-16 relative max-sm:mx-2 ">
-        <div className="bg-[url('/images/pattern_bg.png')] bg-cover  opacity-10 z-0 absolute inset-0 bg-center "></div>
-        <div className=" z-20 relative flex flex-col gap-y-6 items-center ">
-          <h4
-            className={` font-sans text-5xl text-white font-semibold max-sm:text-4xl max-sm:text-center `}
-          >
-            Let&rsquo;s help build & launch your product
-          </h4>
-          <CustomButton
-            text="Work with us"
-            variant="solid"
-            Icon={<Suitcase color="#fff" />}
-          />
+      <section className=" px-4 ">
+        <div className="max-w-[1200px] mx-auto rounded-2xl my-28 bg-enovate-dark-green py-16 relative ">
+          <div className="bg-[url('/images/pattern_bg.png')] bg-cover  opacity-10 z-0 absolute inset-0 bg-center "></div>
+          <div className=" z-20 relative flex flex-col gap-y-6 items-center ">
+            <h4
+              className={` font-sans text-5xl text-white text-center font-semibold max-sm:text-4xl max-sm:text-center `}
+            >
+              Let&rsquo;s help build & launch your product
+            </h4>
+            <CustomButton
+              text="Work with us"
+              variant="solid"
+              Icon={<Suitcase color="#fff" />}
+            />
+          </div>
         </div>
       </section>
     </main>

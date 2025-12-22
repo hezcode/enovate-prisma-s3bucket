@@ -16,7 +16,7 @@ const Footer = () => {
   };
   return (
     <section className=" bg-light-background mt-28 px-2  ">
-      <div className="max-w-[1200px] mx-auto py-12 lg:grid lg:grid-cols-[2fr_1fr_1fr_1fr] gap-x-12 max-sm:flex max-sm:flex-col max-sm:gap-y-10 max-sm:items-start ">
+      <div className="max-w-[1200px] mx-auto py-12 grid grid-cols-[2fr_1fr_1fr_1fr] gap-x-12 max-md:gap-x-4 max-sm:flex max-sm:flex-col max-sm:gap-y-10 max-sm:items-start ">
         <div className=" ">
           <Link href="/" className={` bg-amber-50 `}>
             <Image className={``} src={enovateLogo} alt="enovate_logo" />
@@ -62,7 +62,7 @@ const Footer = () => {
             We&rsquo;re Remote!{" "}
           </p>
           <p
-            className={`font-body-inter font-normal text-title-gray text-justify `}
+            className={`font-body-inter font-normal text-title-gray  max-sm:w-[60%] max-md:w-full `}
           >
             Flexibility is important for great work. We let our team members
             integrate work into their personal lives.

@@ -30,14 +30,14 @@ const Faq = () => {
         Frequently asked questions
       </h4>
       <div
-        className={`grid grid-cols-[2fr_1fr] gap-x-28 max-sm:flex max-sm:flex-col max-sm:gap-y-9  `}
+        className={`grid grid-cols-[2fr_1fr] gap-x-12 max-md:flex max-md:flex-col max-md:gap-y-9  `}
       >
         <div className={``}>
           {faq.map((item) => {
             return (
               <div
                 key={item.id}
-                className={` w-[90%] max-sm:w-full  border-b border-b-light-background py-6 `}
+                className={` max-sm:w-full  max-md:w-[90%] mx-auto  border-b border-b-light-background py-6 `}
                 onClick={() => toggleAnswer(item.id)}
               >
                 <div className={` flex items-center justify-between pb-3.5 `}>

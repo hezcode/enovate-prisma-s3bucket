@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import Providers from "./providers";
 import { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 const merriweatherSans = Merriweather_Sans({
   variable: "--font-merriweather-sans",
@@ -52,7 +53,21 @@ export default function RootLayout({
               },
             }}
           />
-
+          <div className="flex flex-col items-center py-4 gap-y-1 md:hidden  ">
+            <div className="w-32 h-8 relative">
+              <Image
+                src="/icons/LogoDescription.svg"
+                alt="enovate_logo"
+                objectFit="contain"
+                fill
+                fetchPriority="high"
+                loading="lazy"
+              />
+            </div>
+            <p className=" font-sans text-[10px] text-text-dark-gray font-medium ">
+              Creative Design and Development Agency
+            </p>
+          </div>
           <Header />
           {children}
           <section className="mt-auto">

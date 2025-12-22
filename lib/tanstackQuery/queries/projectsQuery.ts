@@ -1,6 +1,6 @@
 const fetchUrl =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3002/api/project"
+    ? "http://localhost:3000/api/project"
     : "/api/project";
 
 interface ProjectTag {

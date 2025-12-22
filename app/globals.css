@@ -54,7 +54,7 @@ body {
   --visible-y: 0px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .responsive-nav-menu {
     --hidden-y: -100%;
     --visible-y: -112%;

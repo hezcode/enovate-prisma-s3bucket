@@ -31,7 +31,7 @@ const ProjectList = () => {
       </div>
     );
   return (
-    <section className=" mx-auto lg:grid w-fit gap-x-24 gap-y-28 lg:grid-cols-[1fr_1fr] mt-21 max-sm:mt-[180px] lg:place-content-center max-md:flex max-md:flex-col max-sm:w-full max-sm:gap-y-[230px] ">
+    <section className=" mx-auto lg:grid w-fit gap-x-24 lg:gap-y-28 lg:grid-cols-[1fr_1fr] lg:mt-21 mt-[180px] lg:place-content-center flex flex-col max-sm:w-full gap-y-[230px] ">
       {data?.map((project) => {
         return (
           <Folder

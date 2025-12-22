@@ -8,26 +8,14 @@ import discuss from "../public/icons/discuss.svg";
 import lineFrame from "../public/icons/line-frame.svg";
 import verticalLineFrame from "../public/icons/step-gradient.svg";
 
-// import HandShake from "@/public/icons/HandShake";
-// import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-// import { getQueryClient } from "../lib/tanstackQuery/get-query-client";
-// import { fetchProjects } from "@/lib/tanstackQuery/queries/projectsQuery";
 import Faq from "@/components/pageSections/Faq";
 import ProjectList from "@/components/pageSections/ProjectList";
-// import { redirect, RedirectType } from "next/navigation";
 import HeroCta from "@/components/pageSections/HeroCta";
 import PrefooterCta from "@/components/pageSections/PrefooterCta";
 import { Suspense } from "react";
 import { ClipLoader } from "react-spinners";
 
 export default async function Home() {
-  // const queryClient = getQueryClient();
-
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["projects"],
-  //   queryFn: fetchProjects,
-  // });
-
   return (
     <main className="  ">
       {/* HERO SECTION */}
@@ -40,13 +28,13 @@ export default async function Home() {
           fetchPriority="high"
           loading="lazy"
         />
-        <div className=" absolute 2xl:translate-y[-70%] translate-y-[-50%] top-[50%]">
+        <div className=" absolute 2xl:translate-y[-70%] -translate-y-[50%] max-md:-translate-y-[60%] top-[50%]  ">
           <h1
             className={` text-[5rem] font-sans font-[700] text-center text-title-gray leading-tight -tracking-wide max-sm:text-[3.5rem] px-2 max-sm:pt-4`}
           >
             We create stunning and
             <span
-              className={`bg-linear-to-tr from-enovate-blue via-enovate-purple to-enovate-green bg-clip-text text-transparent`}
+              className={`bg-linear-to-tr from-enovate-green via-enovate-purple to-enovate-blue bg-clip-text text-transparent`}
             >
               {" "}
               <br /> timeless experiences{" "}
@@ -85,7 +73,7 @@ export default async function Home() {
             mobile.
           </p>
         </div>
-        <div className=" lg:grid lg:grid-cols-[1fr_1fr] lg:gap-8 w-fit mx-auto mt-12 max-md:flex max-md:flex-col max-sm:gap-y-4  ">
+        <div className=" lg:grid lg:grid-cols-[1fr_1fr] lg:gap-8 w-fit mx-auto mt-12 max-md:flex max-md:flex-col max-md:gap-y-4  ">
           {expertiseList.map((data) => {
             return (
               <ExpertiseCard
@@ -100,7 +88,7 @@ export default async function Home() {
           })}
         </div>
       </section>
-      <section className="w-full max-sm:h-[10rem]  h-[20rem] relative">
+      <section className="w-full max-sm:h-[10rem] max-md:h-[15rem]  h-[20rem] relative">
         <Image
           src={`${
             process.env.AWS_S3_BUCKET_BASE_URL ||
@@ -108,7 +96,7 @@ export default async function Home() {
           }Subtract.png`}
           alt="enovate-path"
           fill
-          className=" object-cover max-sm:object-contain "
+          className=" object-cover max-md:object-contain "
         />
       </section>
       {/* PROJECTS SECTION */}
@@ -143,7 +131,7 @@ export default async function Home() {
       {/* OUR PROCESS OF WORKING SECTION */}
       <section className="max-w-[1200px] mx-auto my-24  px-2 ">
         <h4
-          className={`text-title-gray font-sans text-5xl font-[700] leading-snug mx-auto text-center w-[65%] max-sm:w-full max-sm:text-4xl  `}
+          className={`text-title-gray font-sans text-5xl font-[700] leading-snug mx-auto text-center w-[65%] max-sm:w-full max-md:w-[85%] max-sm:text-4xl  `}
         >
           The process of building your next{" "}
           <span className={`text-enovate-dark-green`}>project</span> in 3 steps
@@ -167,7 +155,7 @@ export default async function Home() {
             <Image
               src={verticalLineFrame}
               alt="line-frame"
-              className={` min-md:hidden mb-4 `}
+              className={` hidden max-sm:block mb-4 `}
             />
           </div>
           <div className={``}>
@@ -189,7 +177,7 @@ export default async function Home() {
             <Image
               src={verticalLineFrame}
               alt="line-frame"
-              className={`min-md:hidden mb-4 `}
+              className={` hidden max-sm:block mb-4 `}
             />
           </div>
           <div className={``}>

@@ -69,8 +69,8 @@ const ContactUs = () => {
 
   return (
     <main>
-      <section className="pt-41 max-w-[1200px] mx-auto px-2 max-sm:pt-12 ">
-        <h2 className=" font-sans text-title-gray text-[5rem] font-[700] w-[80%] text-center mx-auto leading-[5rem] max-sm:text-[3.2rem] max-sm:leading-none max-sm:w-full  ">
+      <section className="pt-41 max-md:pt-20 max-w-[1200px] mx-auto px-2 max-sm:pt-12 ">
+        <h2 className=" font-sans text-title-gray text-[5rem] font-[700] w-[80%] text-center mx-auto leading-[5rem] max-md:text-[3.2rem] max-md:leading-none max-sm:w-full  ">
           Let&rsquo;s make it work{" "}
           <span className="bg-linear-to-tr from-enovate-blue  to-enovate-green bg-clip-text text-transparent">
             together
@@ -93,11 +93,11 @@ const ContactUs = () => {
               />
             </div>
           </div>
-          <div className=" flex items-center gap-x-4 py-4 max-sm:flex-col max-sm:items-start ">
+          <div className=" flex items-center gap-x-4 py-4 max-md:flex-col max-md:items-start ">
             <p className=" text-2xl font-medium ">
               I found Enovate Agency using
             </p>
-            <div className=" flex gap-x-2 max-sm:flex-wrap max-sm:gap-y-2 max-sm:gap-x-1 max-sm:mt-2 ">
+            <div className=" flex gap-x-2 flex-wrap gap-y-2 max-sm:gap-x-1 max-md:mt-2 ">
               {foundOptions.map((option) => {
                 return (
                   <div key={option.id}>
@@ -114,11 +114,11 @@ const ContactUs = () => {
               })}
             </div>
           </div>
-          <div className=" flex items-start gap-4 flex-nowrap  py-4 max-sm:flex-col max-sm:items-start">
+          <div className=" flex items-start gap-4 flex-nowrap  py-4 max-md:flex-col max-md:items-start">
             <p className={` text-2xl font-medium `}>
               I’m looking for help with
             </p>
-            <div className=" flex flex-wrap  gap-2 w-[70%] max-sm:w-full max-sm:gap-x-1 ">
+            <div className=" flex flex-wrap  gap-2 w-[70%] max-md:w-full max-sm:w-full max-sm:gap-x-1 ">
               {workOptions.map((option) => {
                 return (
                   <div key={option.id}>
@@ -135,7 +135,7 @@ const ContactUs = () => {
               })}
             </div>
           </div>
-          <div className=" flex items-center gap-x-4 py-4 max-sm:flex-col max-sm:items-start max-sm:gap-y-2 ">
+          <div className=" flex items-center gap-x-4 py-4 max-md:flex-col max-md:items-start max-md:gap-y-2 ">
             <p className={` text-2xl font-medium `}>My budget is around</p>
             <div className="flex items-center p-2 gap-x-1 border rounded-2xl ">
               {serviceChargeData.map((data) => {

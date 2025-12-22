@@ -4,15 +4,20 @@ import CustomButton from "./CustomButton";
 import ArrowRight from "@/public/icons/ArrowRight";
 import CloseIcon from "@/public/icons/CloseIcon";
 import { AnimatePresence, motion } from "motion/react";
+import { redirect } from "next/navigation";
 
 interface NavMenuProps {
   closeMenu: () => void;
 }
 
 const NavMenu = ({ closeMenu }: NavMenuProps) => {
+  const handleWorkTogetherClick = () => {
+    closeMenu();
+    redirect("/contact-us");
+  };
   return (
     <motion.div
-      className=" responsive-nav-menu absolute right-0 md:mt-1 md:min-w-[27rem] min-h-[40rem] flex flex-col justify-between md:p-6 p-3 bg-[#FFFFFFB3] border border-enovate-light-blue rounded-2xl backdrop-blur-[20px] -z-10 max-sm:mb-1 max-sm:max-w-[100%] max-sm:left-0"
+      className=" responsive-nav-menu absolute md:right-[16px] md:mt-1 md:min-w-[27rem] min-h-[40rem] flex flex-col justify-between md:p-6 p-3 bg-[#FFFFFFB3] border border-enovate-light-blue rounded-2xl backdrop-blur-[20px] -z-10 max-sm:mb-1 max-sm:max-w-[100%] max-md:min-w-full max-sm:left-0"
       key="nav_menu"
       initial={{ opacity: 0, y: "var(--hidden-y)" }}
       animate={{
@@ -57,6 +62,7 @@ const NavMenu = ({ closeMenu }: NavMenuProps) => {
           variant="solid"
           text="Let&rsquo;s work together"
           Icon={<ArrowRight />}
+          onClickFn={handleWorkTogetherClick}
         />
         <ul
           className={` font-body-inter font-normal text-title-gray gap-y-2 flex flex-col `}

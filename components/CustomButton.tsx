@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { easeInOut, motion } from "motion/react";
-import type { Variants } from "motion/react";
-import { button } from "motion/react-client";
+import { motion } from "motion/react";
 
 interface CustomBtnProps {
   text: string;

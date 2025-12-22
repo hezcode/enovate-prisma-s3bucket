@@ -17,7 +17,7 @@ const Header = () => {
     setShowNavMenu(false);
   };
   return (
-    <header className=" z-40 lg:max-w-[1200px] mx-auto fixed right-0 left-0 md:top-0 max-md:max-w-[340px] max-sm:bottom-4 md:my-4 ">
+    <header className="md:px-4 z-40 lg:max-w-[1200px] mx-auto fixed right-0 left-0 md:top-0 max-md:max-w-[340px] max-md:bottom-4 md:my-4 ">
       <motion.div
         initial={{ opacity: 0, y: -100 }}
         animate={{
@@ -30,11 +30,11 @@ const Header = () => {
           y: -100,
           transition: { delay: 0.2, duration: 0.7, ease: easeInOut },
         }}
-        className="rounded-2xl  bg-linear-90 from-enovate-light-blue via-enovate-light-purple to-enovate-light-green p-[2px]   "
+        className="rounded-2xl bg-linear-90 from-enovate-light-blue/80 via-enovate-light-purple/80 to-enovate-light-green/80 p-[2px]   "
       >
         {/* LHS OF HEADER --- WITH LOGO */}
-        <div className=" bg-white flex items-center justify-between py-6 px-6 max-sm:py-4 rounded-2xl max-sm:justify-center ">
-          <Link className=" block max-sm:hidden " href="/">
+        <div className=" bg-white flex items-center justify-between py-4 px-6 max-md:py-4 rounded-2xl max-md:justify-center ">
+          <Link className=" block max-md:hidden " href="/">
             <div className="flex flex-col gap-y-1  ">
               <div className="w-32 h-8 relative">
                 <Image
@@ -68,10 +68,6 @@ const Header = () => {
               exit={{
                 opacity: 0,
                 y: 10,
-                // transition: {
-                //   duration: 0.5,
-                //   delay: 0.8,
-                // },
               }}
               onMouseOver={() => setNavHovered(true)}
               onMouseLeave={() => setNavHovered(false)}
@@ -84,7 +80,7 @@ const Header = () => {
               <div
                 className={`p-1 ${
                   navHovered ? "bg-text-dark-gray" : "bg-none"
-                }  rounded-xl transition-all delay-150 ease-out `}
+                }  rounded-xl transition-all duration--300 ease-in-out `}
               >
                 <NavIcon color={navHovered ? "#fff" : "#5A5A5A"} />
               </div>
