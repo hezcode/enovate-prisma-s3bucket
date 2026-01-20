@@ -9,13 +9,20 @@ import {
 } from "@/data/contactFormData";
 import ArrowRight from "@/public/icons/ArrowRight";
 import MailIcon from "@/public/icons/MailIcon";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import TurnstileWidget from "@/components/TurnstileWidget";
+import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import toast from "react-hot-toast";
 
 const ContactUs = () => {
   const [selectedCurrency, setSelectedCurrency] = useState<"naira" | "dollar">(
     "naira"
   );
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const [turnstileWidgetKey, setTurnstileWidgetKey] = useState<number>(0);
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
 
   const serviceChargeData = serviceCharges.map((data) => {
     return data;
@@ -41,28 +48,62 @@ const ContactUs = () => {
     budget: "",
     email: "",
     moreDetails: "",
+    website: "", // honeypot
   });
 
   const handleShootEmail = async (e: FormEvent) => {
     e.preventDefault();
-    const res = await fetch("/api/web3forms", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValue),
-    });
-    const result = await res.json();
-    if (result.success) {
-      toast.success("Your message was successfully sent!", {
+    try {
+      if (turnstileSiteKey && !turnstileToken) {
+        toast.error("Please complete the verification and try again.", {
+          duration: 9000,
+          position: "top-right",
+        });
+        return;
+      }
+
+      const res = await fetch("/api/web3forms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formValue,
+          turnstileToken,
+        }),
+      });
+
+      const result = (await res.json().catch(() => null)) as
+        | { success?: boolean; message?: string }
+        | null;
+
+      if (res.ok && result?.success) {
+        toast.success("Your message was successfully sent!", {
+          duration: 9000,
+          position: "top-right",
+        });
+        setFormValue({
+          name: "",
+          gotToKnowEnovate: "",
+          service: "",
+          budget: "",
+          email: "",
+          moreDetails: "",
+          website: "",
+        });
+        setTurnstileToken("");
+        setTurnstileWidgetKey((k) => k + 1);
+        return;
+      }
+
+      toast.error(result?.message ?? "Unable to send your message. Try again.", {
         duration: 9000,
         position: "top-right",
       });
-      setFormValue({
-        name: "",
-        gotToKnowEnovate: "",
-        service: "",
-        budget: "",
-        email: "",
-        moreDetails: "",
+      setTurnstileToken("");
+      setTurnstileWidgetKey((k) => k + 1);
+    } catch {
+      toast.error("Network error. Please try again.", {
+        duration: 9000,
+        position: "top-right",
       });
     }
   };
@@ -80,6 +121,19 @@ const ContactUs = () => {
           className=" font-body-inter mt-[5rem] gap-y-2 flex flex-col max-sm:mt-[3rem]"
           onSubmit={handleShootEmail}
         >
+          {/* Honeypot field (hidden from humans) */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              type="text"
+              name="website"
+              value={formValue.website}
+              onChange={handleTextChange}
+              autoComplete="off"
+              tabIndex={-1}
+            />
+          </div>
           <div className=" flex gap-x-4 py-4 max-sm:flex-col max-sm:gap-y-4  ">
             <div className=" flex items-baseline gap-x-4 max-sm:flex-col  ">
               <p className={` text-2xl font-medium `}>Hi, My name is </p>
@@ -210,6 +264,15 @@ const ContactUs = () => {
               rows={4}
             ></textarea>
           </div>
+          {turnstileSiteKey ? (
+            <div className="py-4">
+              <TurnstileWidget
+                key={turnstileWidgetKey}
+                siteKey={turnstileSiteKey}
+                onToken={handleTurnstileToken}
+              />
+            </div>
+          ) : null}
           <div>
             <CustomButton
               text="Let&rsquo;s collaborate"
