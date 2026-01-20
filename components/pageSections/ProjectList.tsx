@@ -11,7 +11,6 @@ const ProjectList = () => {
     queryKey: ["projects"],
     queryFn: fetchProjects,
   });
-  console.log(data);
   // if (isLoading)
   //   return (
   //     <div className=" flex items-center flex-col my-8 gap-y-4 ">
@@ -33,7 +32,7 @@ const ProjectList = () => {
     );
   return (
     <section className=" mx-auto lg:grid w-fit gap-x-24 lg:gap-y-28 lg:grid-cols-[1fr_1fr] lg:mt-21 mt-[180px] lg:place-content-center flex flex-col max-sm:w-full gap-y-[230px] ">
-      {/* {data && data.map((project) => {
+      {data && data.map((project) => {
         return (
           <Folder
             key={project.id}
@@ -45,7 +44,7 @@ const ProjectList = () => {
             tag={project.tag}
           />
         );
-      })} */}
+      })}
     </section>
   );
 };
